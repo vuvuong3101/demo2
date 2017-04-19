@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>HiddenPassion</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../static/css/main.css" />
+        <link rel="icon" href="../static/images/icon.png" type="image"/>
+        <style type="text/css">
+            body, html
+            {
+                margin: 0; padding: 0; height: 100%; overflow: hidden;
+            }
+
+            #content
+            {
+                position:absolute; left: 0; right: 0; bottom: 0; top: 0px;
+                padding-top: 5em;
+            }
+        </style>
+	    <script type="application/javascript">
+
+		function resizeIFrameToFitContent( iFrame ) {
+
+			iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+			iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+		}
+
+		window.addEventListener('DOMContentReady', function(e) {
+
+			var iFrame = document.getElementById( 'iFrame1' );
+			resizeIFrameToFitContent( iFrame );
+
+		// or, to resize all iframes:
+		var iframes = document.querySelectorAll("iframe");
+		for( var i = 0; i < iframes.length; i++) {
+			resizeIFrameToFitContent( iframes[i] );
+		}
+
+	} );
+
+</script>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="main" class="logo">HiddenPassion</a>
+					<nav id="nav">
+						<a href="main"><img src="../static/images/home.png" width="20" height="20" style="padding-top: 0.6em"/> Home</a>
+						<a href="#" onClick="Play(); SiteMusic({{ link_item }}, {{ button }})">Music</a>
+						<a href="#" onClick="Play(); SiteClip({{ link_item }}, {{ button }})">Clips</a>
+						<a href="#" onClick="Play(); SiteBook({{ link_item }}, {{ button }})">Books</a>
+						<a href="#" onClick="Play(); SiteSpecial({{ link_item }}, {{ button }})">Specials</a>
+					</nav>
+				</div>
+			</header>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+
+		<!-- One -->
+                <div class="containeriframe" id="iframe2" style="display: block" >
+                    <iframe id="myIframe2" src = "{{ site_random_all }} " name="tree" onload="resizeIFrameToFitContent(iframe)" frameborder="0" scrolling="0" allowfullscreen="allowfullscreen" style="overflow: inherit; height: 90%;width: 100%; position: absolute"></iframe>
+                </div>
+
+
+                <div class="containeriframe" id="iframe" style="display:none" >
+                    <iframe id="myIframe" name="tree" onload="resizeIFrameToFitContent(iframe)" frameborder="0" scrolling="0" allowfullscreen="allowfullscreen" style="overflow: inherit; height: 90%;width: 100%; position: absolute"></iframe>
+                </div>
+
+		<!-- Scripts -->
+			<script src="../static/js/jquery.min.js"></script>
+			<script src="../static/js/skel.min.js"></script>
+			<script src="../static/js/util.js"></script>
+			<script src="../static/js/main.js"></script>
+
+            <script type="text/javascript">
+
+					function SiteHome(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*linkdata.length);
+						var sites = linkdata[index];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					function SiteMusic(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*buttondata['music'].length);
+						var sites = linkdata[buttondata['music'][index]];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					function SiteMovie(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*buttondata['movie'].length);
+						var sites = linkdata[buttondata['movie'][index]];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					function SiteBook(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*buttondata['book'].length);
+						var sites = linkdata[buttondata['book'][index]];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					function SiteClip(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*buttondata['clip'].length);
+						var sites = linkdata[buttondata['clip'][index]];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					function SiteSpecial(linkdata,buttondata) {
+						var index = Math.floor(Math.random()*buttondata['special'].length);
+						var sites = linkdata[buttondata['special'][index]];
+						document.getElementById('myIframe').src = sites;
+					}
+
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+
+					function Play(){
+						document.getElementById('iframe2').style = "display: none";
+						document.getElementById('iframe').style = "display: block";
+					}
+            </script>
+	</body>
+</html>
