@@ -9,7 +9,7 @@ mlab.connect()
 
 @app.route('/')
 def home():
-    return redirect('/main')
+    return redirect('/home')
 
 link_item = []
 index_button = ['music','movie','book','clip','special']
@@ -50,7 +50,7 @@ def add_data():
 # button_.special = button['special']
 # button_.save()
 
-@app.route('/home')
+@app.route('/main')
 def main():
     # print(LinkItem.objects()[0].item)
     # print(ButtonItem.objects()[0].to_dict())
@@ -59,7 +59,7 @@ def main():
     return render_template('main.html', link_item=LinkItem.objects()[0].item, button=ButtonItem.objects()[0].to_dict(),
                            first_time=True, site_random_all=site_random_all)
 
-@app.route('/main')
+@app.route('/home')
 def main2():
     return  render_template('index.html')
 if __name__ == '__main__':
